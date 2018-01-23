@@ -209,6 +209,287 @@ i \textbf{pgfplots} će na temelju tih podataka izraditi grafikon
     \end{axis}
 \end{tikzpicture}
 \end{frame}
+%jelena
+\begin{frame}[fragile]
+\frametitle{2D grafikoni}
+
+\textbf{2D} grafikone možete persionalizirati tj. prilagoditi ih svojim potrebama.
+Oni mogu predstavljati npr: 
+\begin{itemize}
+\item matematički dijagram 
+
+\item temperaturni dijagram 
+
+\item podatkovani dijagram itd. 
+
+\end{itemize}
+
+
+\end{frame}
+%kod matematicki
+\begin{frame}[fragile]
+\frametitle{Primjer matematičkog grafikona}
+\Fontvi
+\begin{verbatim}
+\documentclass[10pt]{article}
+\usepackage{pgfplots}
+\pgfplotsset{width=10cm,height=10cm} %dimenzije grafa
+\begin{document}
+\begin{tikzpicture}
+\begin{axis}[
+    axis lines = left,
+    xlabel = $x$,
+    ylabel = {$f(x)$},
+]
+
+\addplot [
+    domain=-10:10, 
+    samples=100, 
+    color=red,
+]
+{x^2 - 2*x - 1};
+\addlegendentry{$x^2 - 2x - 1$}
+
+\addplot [
+    domain=-10:10, 
+    samples=100, 
+    color=blue,
+    ]
+    {x^2 + 2*x + 1};
+\addlegendentry{$x^2 + 2x + 1$}
+ 
+\end{axis}
+\end{tikzpicture}
+\end{document}
+\end{verbatim}
+\end{frame}
+%matematicki
+\begin{frame}
+\frametitle{Primjer matematičkog grafikona}
+
+
+\begin{tikzpicture}
+\begin{axis}[
+    axis lines = left,
+    xlabel = $x$,
+    ylabel = {$f(x)$},
+]
+
+\addplot [
+    domain=-10:10, 
+    samples=100, 
+    color=red,
+]
+{x^2 - 2*x - 1};
+\addlegendentry{$x^2 - 2x - 1$}
+
+\addplot [
+    domain=-10:10, 
+    samples=100, 
+    color=blue,
+    ]
+    {x^2 + 2*x + 1};
+\addlegendentry{$x^2 + 2x + 1$}
+ 
+\end{axis}
+\end{tikzpicture}
+
+
+\end{frame}
+%temperatura
+
+\begin{frame}[fragile]
+\frametitle{Primjer 2D grafikona}
+\Fontvi
+
+\begin{verbatim}
+\documentclass[10pt]{article}
+\usepackage{pgfplots}
+\pgfplotsset{width=10cm,height=10cm} %dimenzije grafa
+\begin{document}
+\begin{tikzpicture}
+\begin{axis}[
+    title={Temperature dependence of CuSO$_4\cdot$5H$_2$O solubility},
+    xlabel={Temperature},
+    ylabel={Solubility},
+    xmin=0, xmax=100,
+    ymin=0, ymax=120,
+    xtick={0,20,40,60,80,100},
+    ytick={0,20,40,60,80,100,120},
+    legend pos=north east,
+    ymajorgrids=true,
+    grid style=dashed,
+]
+ \addplot[
+    color=blue,
+    mark=square,
+    ]
+    coordinates {
+    (0,23.1)(10,27.5)(20,32)(30,37.8)(40,44.6)(60,61.8)(80,83.8)(100,114)
+    };
+    \legend{CuSO$_4\cdot$5H$_2$O}
+ 
+\end{axis}
+\end{tikzpicture}
+\end{document}
+\end{verbatim}
+
+\end{frame}
+%temperatura
+\begin{frame}
+\frametitle{Primjer 2D grafikona}
+
+
+\begin{tikzpicture}
+\begin{axis}[
+    title={Temperature dependence of CuSO$_4\cdot$5H$_2$O solubility},
+    xlabel={Temperature},
+    ylabel={Solubility},
+    xmin=0, xmax=100,
+    ymin=0, ymax=120,
+    xtick={0,20,40,60,80,100},
+    ytick={0,20,40,60,80,100,120},
+    legend pos=north east,
+    ymajorgrids=true,
+    grid style=dashed,
+]
+ 
+\addplot[
+    color=blue,
+    mark=square,
+    ]
+    coordinates {
+    (0,23.1)(10,27.5)(20,32)(30,37.8)(40,44.6)(60,61.8)(80,83.8)(100,114)
+    };
+    \legend{CuSO$_4\cdot$5H$_2$O}
+ 
+\end{axis}
+\end{tikzpicture}
+
+
+\end{frame}
+%scatter grafikoni
+\begin{frame}[fragile]
+\frametitle{``Scatter'' grafikoni}
+\textbf{Scatter} grafikoni se koriste za prikazivanje nekih informacija kao neku vrstu oznake.
+Npr. prilikom računanja statističke regresije.
+
+
+\end{frame}
+%grafion sa stupcima
+\begin{frame}
+\frametitle{Grafikoni sa stupcima}
+
+\textbf{Grafikoni sa stupcima} koriste se za prikaz prikupljenih podataka i to uglavnom statističkih podataka o nečemu.
+\end{frame}
+%kod grafikon sa stupcima
+\begin{frame}[fragile]
+\frametitle{Primjer grifikona sa stupcima}
+\Fontvi
+
+\begin{verbatim}
+\documentclass[10pt]{article}
+\usepackage{pgfplots}
+\pgfplotsset{width=10cm,height=10cm} %dimenzije grafa
+\begin{document}
+\begin{tikzpicture}
+\begin{axis}[
+    x tick label style={
+        /pgf/number format/1000 sep=},
+    ylabel=Year,
+    enlargelimits=0.05,
+    legend style={at={(0.5,-0.1)},
+    anchor=north,legend columns=-1},
+    ybar interval=0.7,
+]
+\addplot 
+    coordinates {(2012,408184) (2011,408348)
+         (2010,414870) (2009,412156)};
+\addplot 
+    coordinates {(2012,388950) (2011,393007) 
+        (2010,398449) (2009,395972)};
+\legend{Men,Women}
+\end{axis}
+\end{tikzpicture}
+
+
+\end{document}
+\end{verbatim}
+\end{frame}
+%grafikon sa stupcima 
+\begin{frame}
+\frametitle{Primjer grafikona sa stupcima}
+\begin{tikzpicture}
+\begin{axis}[
+    x tick label style={
+        /pgf/number format/1000 sep=},
+    ylabel=Year,
+    enlargelimits=0.05,
+    legend style={at={(0.5,-0.1)},
+    anchor=north,legend columns=-1},
+    ybar interval=0.7,
+]
+\addplot 
+    coordinates {(2012,408184) (2011,408348)
+         (2010,414870) (2009,412156)};
+\addplot 
+    coordinates {(2012,388950) (2011,393007) 
+        (2010,398449) (2009,395972)};
+\legend{Men,Women}
+\end{axis}
+\end{tikzpicture}
+\end{frame}
+%3d matematicki
+\begin{frame}[fragile]
+\frametitle{3D grafikon}
+\Fontvi
+
+\begin{verbatim}
+\documentclass[10pt]{article}
+\usepackage{pgfplots}
+\pgfplotsset{width=10cm,height=10cm} %dimenzije grafa
+\begin{document}
+\begin{tikzpicture}
+\begin{axis}[
+    title=Primjer korištenja mrežnog parametra,
+    hide axis, %osa se neće prikazati
+    colormap/cool,
+]
+\addplot3[
+    mesh,
+    samples=50,
+    domain=-8:8,
+]
+{sin(deg(sqrt(x^2+y^2)))/sqrt(x^2+y^2)};
+\addlegendentry{$\frac{sin(r)}{r}$}
+\end{axis}
+\end{tikzpicture
+\end{tikzpicture}
+\end{tikzpicture}
+\end{verbatim}
+\end{frame}
+\begin{frame}
+\frametitle{3D grafikon}
+
+
+\begin{tikzpicture}
+\begin{axis}[
+    title=Primjer korištenja mrežnog parametra,
+    hide axis,
+    colormap/cool,
+]
+\addplot3[
+    mesh,
+    samples=50,
+    domain=-8:8,
+]
+{sin(deg(sqrt(x^2+y^2)))/sqrt(x^2+y^2)};
+\addlegendentry{$\frac{sin(r)}{r}$}
+\end{axis}
+\end{tikzpicture}
+
+\end{frame}
+
 
 \end{document}
 
